@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Main courante</title>
+<meta name="description" content="Registre perso : boulots, fac, sport et budget.">
+<meta name="theme-color" content="#ECEEF0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F151B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Main courante">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="offline" id="offline" hidden>Hors connexion : consultation seule. Les ajouts reviennent avec le réseau.</div>
+
+<!-- Écran de connexion -->
+<section class="screen" id="auth" hidden>
+  <div class="authbox">
+    <div class="brand">
+      <span class="kicker">Registre perso</span>
+      <h1>Main <span>courante</span></h1>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <h2 id="authTitle">Connexion</h2>
+      <div class="field"><label for="authEmail">Adresse mail</label><input id="authEmail" type="email" autocomplete="email" required></div>
+      <div class="field" id="pwField"><label for="authPw">Mot de passe</label><input id="authPw" type="password" autocomplete="current-password" minlength="8" required></div>
+      <p class="err" id="authErr" hidden></p>
+      <p class="info" id="authInfo" hidden></p>
+      <button class="btn" type="submit" id="authSubmit">Se connecter</button>
+      <div class="links">
+        <button class="link" type="button" id="toSignup">Créer un compte</button>
+        <button class="link" type="button" id="toReset">Mot de passe oublié</button>
+      </div>
+    </form>
+
+    <form id="newPwForm" novalidate hidden>
+      <h2>Nouveau mot de passe</h2>
+      <div class="field"><label for="newPw">Nouveau mot de passe (8 caractères min.)</label><input id="newPw" type="password" autocomplete="new-password" minlength="8" required></div>
+      <p class="err" id="newPwErr" hidden></p>
+      <button class="btn" type="submit">Enregistrer</button>
+    </form>
+  </div>
+</section>
+
+<!-- Appli -->
+<div id="app" hidden>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <span class="kicker">Registre perso</span>
+        <h1>Main <span>courante</span></h1>
+      </div>
+      <div class="hdr-right">
+        <div class="month" aria-label="Mois affiché">
+          <button class="iconbtn" id="prevM" type="button" aria-label="Mois précédent">‹</button>
+          <output id="monthLbl" aria-live="polite"></output>
+          <button class="iconbtn" id="nextM" type="button" aria-label="Mois suivant">›</button>
+        </div>
+        <div class="hdr-actions">
+          <button class="btn ghost" id="lockBtn" type="button" hidden>Verrouiller</button>
+          <button class="btn ghost" id="settingsBtn" type="button">Réglages</button>
+        </div>
+      </div>
+    </header>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+    <div id="note" class="note" hidden></div>
+    <main id="main"><p class="ras">Ouverture du registre…</p></main>
+  </div>
+</div>
+
+<!-- Code PIN -->
+<div class="lock" id="lock" role="dialog" aria-modal="true" aria-labelledby="lockT" hidden>
+  <div class="lockbox">
+    <span class="kicker">Main courante · accès protégé</span>
+    <h2 id="lockT">Code PIN</h2>
+    <p id="lockS"></p>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="lockmsg" id="lockMsg" role="alert"></div>
+    <div class="pad" id="pad">
+      <button class="key" type="button" data-key="1">1</button><button class="key" type="button" data-key="2">2</button><button class="key" type="button" data-key="3">3</button>
+      <button class="key" type="button" data-key="4">4</button><button class="key" type="button" data-key="5">5</button><button class="key" type="button" data-key="6">6</button>
+      <button class="key" type="button" data-key="7">7</button><button class="key" type="button" data-key="8">8</button><button class="key" type="button" data-key="9">9</button>
+      <button class="key small" type="button" data-key="del" aria-label="Effacer le dernier chiffre">Effacer</button><button class="key" type="button" data-key="0">0</button><button class="key small ok" type="button" data-key="ok">OK</button>
+    </div>
+    <button class="link" type="button" id="lockAlt"></button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.109.0/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
