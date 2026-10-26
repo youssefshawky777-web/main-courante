@@ -1,5 +1,27 @@
 # Main courante — mise en ligne et installation
 
+> ## Nouveau : version 2 (pages modifiables)
+>
+> **Pour passer à la v2 (3 étapes, 5 minutes) :**
+> 1. Supabase → **SQL Editor** → *New query* → colle tout `supabase-v2.sql` → **Run** (*Success*).
+> 2. Sur GitHub, ré-uploade `app.js`, `index.html`, `styles.css`, `sw.js` et ajoute `supabase-v2.sql` (**Add file → Upload files**, puis *Commit changes*).
+> 3. Sur le téléphone : ferme complètement l'appli et rouvre-la (2 fois si besoin).
+>
+> Tes entrées sont gardées. Au premier lancement, tes 4 onglets deviennent des pages modifiables.
+>
+> **Ce qui change**
+> - **Pages** : bouton **＋ Page** dans les onglets ; **Modifier la page** en bas de chaque page ; ordre, archivage et suppression dans **Réglages → Pages**. Quatre modèles : journal daté, tâches à échéance, argent, habitude.
+> - **Modifier une entrée** : ✎ sur la ligne (✕ pour supprimer, 2 touches).
+> - **Modèles rapides** : remplis le formulaire → « Enregistrer ces valeurs comme modèle rapide ». Ensuite un tap sur le bouton ajoute l'entrée à la date du jour (avec *Annuler*).
+> - **Taux horaire** : dans *Modifier la page* de Boulots, mets ton €/h par boulot ; le montant se calcule quand tu tapes les heures.
+> - **Objectifs du mois** : dans *Modifier la page* (ex. Dépenses · Sorties au plus 80 €). Jauges sur le tableau de bord.
+> - **Rappels** : bandeau en haut pour ce qui tombe aujourd'hui/demain ; 📅 sur une tâche, ou *Réglages → Rappels*, pour l'ajouter à l'agenda du téléphone (alerte la veille à 18 h et 7 jours avant).
+> - **Recherche** : barre de recherche + filtre sur chaque page (tous mois confondus), et recherche globale sur le tableau de bord.
+> - **Export CSV** (Excel/Numbers) : en bas de chaque page (mois ou tout) et *Réglages → Export*.
+> - **Photo de ticket** : champ « Ticket » dans Budget (ajoutable à n'importe quelle page via le type de champ *Photo*). Photos privées, compressées.
+> - **Face ID / empreinte** : *Réglages → Code PIN* une fois le PIN activé.
+
+
 Appli perso installable sur ton téléphone : boulots, fac, sport & tir, budget.
 Connexion par adresse mail + mot de passe, puis code PIN sur ton téléphone.
 Tes données sont dans ta base Supabase, synchronisées entre téléphone et ordi.
@@ -16,6 +38,7 @@ Coût : 0 €. Temps : environ 30 minutes la première fois.
 | `config.js` | **À remplir** avec les deux valeurs de ton projet Supabase |
 | `manifest.webmanifest`, `sw.js`, `icons/` | Ce qui rend l'appli installable et utilisable hors réseau |
 | `supabase.sql` | Le script qui crée la base et ses règles de sécurité |
+| `supabase-v2.sql` | Ajoute les pages modifiables et le stockage des photos (v2) |
 
 ---
 
@@ -28,7 +51,7 @@ Coût : 0 €. Temps : environ 30 minutes la première fois.
    - Région : **West EU (Paris)** si proposée, sinon une région Europe
    - Plan : **Free**
 3. Attends 1 à 2 minutes que le projet soit prêt.
-4. Menu de gauche → **SQL Editor** → *New query*. Colle tout le contenu de `supabase.sql` → **Run**. Tu dois voir *Success*.
+4. Menu de gauche → **SQL Editor** → *New query*. Colle tout le contenu de `supabase.sql` → **Run**. Tu dois voir *Success*. Refais pareil avec `supabase-v2.sql`.
 5. Récupère tes deux valeurs avec le bouton **Connect** en haut du projet (ou *Settings → API Keys*) :
    - **Project URL** : `https://xxxxxxxx.supabase.co`
    - **Publishable key** : commence par `sb_publishable_…`
@@ -93,7 +116,7 @@ Le PIN est propre à chaque appareil : sur l'ordi, tu peux en mettre un autre, o
 ## Mettre à jour l'appli
 
 1. Modifie le fichier sur GitHub (icône crayon) ou ré-uploade-le.
-2. Dans `sw.js`, change la ligne `const VERSION = 'mc-v1';` en `'mc-v2'` (puis v3, etc.).
+2. Dans `sw.js`, change la ligne `const VERSION = 'mc-v2';` en `'mc-v3'` (puis v4, etc.).
    Sans ça, le téléphone peut garder l'ancienne version en cache.
 3. Ferme complètement l'appli sur le téléphone et rouvre-la.
 
