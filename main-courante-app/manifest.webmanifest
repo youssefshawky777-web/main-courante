@@ -1,7 +1,7 @@
 {
   "name": "Main courante",
   "short_name": "Main courante",
-  "description": "Registre perso : boulots, fac, sport et budget.",
+  "description": "Registre perso : journée, objectifs, agenda, révisions, budget.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

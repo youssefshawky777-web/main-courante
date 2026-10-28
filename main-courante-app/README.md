@@ -1,5 +1,59 @@
 # Main courante — mise en ligne et installation
 
+> ## Nouveau : version 4
+>
+> **Pour passer à la v4 :** GitHub → dossier `main-courante-app` → **Add file → Upload files** : `app.js`, `index.html`, `styles.css`, `sw.js`, `README.md` → *Commit changes*. Puis ferme et rouvre l'appli sur le téléphone. Pas de nouveau script SQL (si la v3 n'est pas encore passée, exécute `supabase-v3.sql`).
+>
+> - **Barre en bas sur téléphone** : Accueil + tes 3 premières pages + « Toutes » (toutes les pages, Bilan, Réglages, Nouvelle page). L'ordre se change dans Réglages → Pages.
+> - **Récurrentes** (Budget → Modifier la page) : loyer, abonnements, bourse, épargne… ajoutés tout seuls le jour choisi chaque mois.
+> - **Sommeil et énergie** dans Ma journée, avec la comparaison automatique « après une nuit de sécu / les autres jours ».
+> - **Pomodoro** (25/5, pause longue toutes les 4) à côté du chrono : bip + vibration, temps ajouté tout seul. Durées réglables dans Ma journée → Modifier la page.
+> - **Bilan du mois** (bouton sur le tableau de bord) : boulots, budget, journée, objectifs, fac, révisions, sport, lectures… avec **Imprimer / PDF**.
+> - **Partiels à venir** dans Révisions : compte à rebours, révisions prévues ou en retard par matière, et « révision générale » à ajouter la veille. Un partiel est repéré dans Fac (type Partiel, ou titre avec partiel/examen/CC/DS) ou dans l'Agenda.
+
+
+> ## Version 3 (journée, objectifs, agenda, révisions…)
+>
+> **Pour passer à la v3 (3 étapes) :**
+> 1. Supabase → **SQL Editor** → *New query* → colle tout `supabase-v3.sql` → **Run** (*Success*). Il contient aussi la v2.
+> 2. GitHub → dossier `main-courante-app` → **Add file → Upload files** : `app.js`, `styles.css`, `sw.js`, `manifest.webmanifest`, `README.md`, `supabase-v3.sql` → *Commit changes*.
+> 3. Téléphone : ferme complètement l'appli et rouvre-la (2 fois si besoin). Sur le tableau de bord, touche **Ajouter les pages cochées**.
+>
+> **Les nouvelles pages** (chacune se renomme, se réordonne ou se supprime comme les autres)
+> - **Ma journée** : citation du jour ; to-do *À faire absolument / Si j'ai le temps / Pour me reposer après* (↪ reporte à demain) ; humeur ; productivité 1–5 ; temps de travail (+15 min, +30 min, +1 h ou **chrono**) ; mini-bilan + point positif ; calendrier du mois coloré par humeur et graphique du temps de travail. À droite : agenda, révisions, « très important » et pense-bête du jour.
+> - **Objectifs** : jour / semaine / mois / année, ★ = *très important cette semaine*, ↪ reporte à la période suivante, « reprendre les non atteints » ; **bilan de la semaine** automatique.
+> - **Agenda** : emploi du temps (créneaux qui reviennent chaque semaine, avec dates de validité) + planning (événements datés), grille de la semaine, export vers le calendrier du téléphone.
+> - **À ne pas oublier** : liste à cocher avec date facultative. Le modèle « Liste à cocher » sert aussi pour les courses, les idées…
+> - **Révisions (méthode des J)** : matière, chapitre, J0 → J1, J3, J7, J14, J30 (modifiable). « À revoir aujourd'hui », pastilles colorées, charge des 7 prochains jours.
+> - **Lectures** : titre, auteur, référence, dates, note ★, notes perso ; compteur de l'année et objectif.
+> - **Liens & notes** : applis, sites et notes utiles par catégorie, avec recherche.
+> - **Budget** : nouveau sens **Épargne**, « Libellé » devient **Description**, camembert des dépenses, graphique 6 mois, taux d'épargne, paies des Boulots comptées dans les revenus (réglable).
+>
+> Les citations perso se règlent dans *Ma journée → Modifier la page*.
+
+
+> ## Version 2 (pages modifiables)
+>
+> **Pour passer à la v2 (3 étapes, 5 minutes) :**
+> 1. Supabase → **SQL Editor** → *New query* → colle tout `supabase-v2.sql` → **Run** (*Success*).
+> 2. Sur GitHub, ré-uploade `app.js`, `index.html`, `styles.css`, `sw.js` et ajoute `supabase-v2.sql` (**Add file → Upload files**, puis *Commit changes*).
+> 3. Sur le téléphone : ferme complètement l'appli et rouvre-la (2 fois si besoin).
+>
+> Tes entrées sont gardées. Au premier lancement, tes 4 onglets deviennent des pages modifiables.
+>
+> **Ce qui change**
+> - **Pages** : bouton **＋ Page** dans les onglets ; **Modifier la page** en bas de chaque page ; ordre, archivage et suppression dans **Réglages → Pages**. Quatre modèles : journal daté, tâches à échéance, argent, habitude.
+> - **Modifier une entrée** : ✎ sur la ligne (✕ pour supprimer, 2 touches).
+> - **Modèles rapides** : remplis le formulaire → « Enregistrer ces valeurs comme modèle rapide ». Ensuite un tap sur le bouton ajoute l'entrée à la date du jour (avec *Annuler*).
+> - **Taux horaire** : dans *Modifier la page* de Boulots, mets ton €/h par boulot ; le montant se calcule quand tu tapes les heures.
+> - **Objectifs du mois** : dans *Modifier la page* (ex. Dépenses · Sorties au plus 80 €). Jauges sur le tableau de bord.
+> - **Rappels** : bandeau en haut pour ce qui tombe aujourd'hui/demain ; 📅 sur une tâche, ou *Réglages → Rappels*, pour l'ajouter à l'agenda du téléphone (alerte la veille à 18 h et 7 jours avant).
+> - **Recherche** : barre de recherche + filtre sur chaque page (tous mois confondus), et recherche globale sur le tableau de bord.
+> - **Export CSV** (Excel/Numbers) : en bas de chaque page (mois ou tout) et *Réglages → Export*.
+> - **Photo de ticket** : champ « Ticket » dans Budget (ajoutable à n'importe quelle page via le type de champ *Photo*). Photos privées, compressées.
+> - **Face ID / empreinte** : *Réglages → Code PIN* une fois le PIN activé.
+
+
 Appli perso installable sur ton téléphone : boulots, fac, sport & tir, budget.
 Connexion par adresse mail + mot de passe, puis code PIN sur ton téléphone.
 Tes données sont dans ta base Supabase, synchronisées entre téléphone et ordi.
@@ -16,6 +70,7 @@ Coût : 0 €. Temps : environ 30 minutes la première fois.
 | `config.js` | **À remplir** avec les deux valeurs de ton projet Supabase |
 | `manifest.webmanifest`, `sw.js`, `icons/` | Ce qui rend l'appli installable et utilisable hors réseau |
 | `supabase.sql` | Le script qui crée la base et ses règles de sécurité |
+| `supabase-v2.sql` | Ajoute les pages modifiables et le stockage des photos (v2) |
 
 ---
 
@@ -28,7 +83,7 @@ Coût : 0 €. Temps : environ 30 minutes la première fois.
    - Région : **West EU (Paris)** si proposée, sinon une région Europe
    - Plan : **Free**
 3. Attends 1 à 2 minutes que le projet soit prêt.
-4. Menu de gauche → **SQL Editor** → *New query*. Colle tout le contenu de `supabase.sql` → **Run**. Tu dois voir *Success*.
+4. Menu de gauche → **SQL Editor** → *New query*. Colle tout le contenu de `supabase.sql` → **Run**. Tu dois voir *Success*. Refais pareil avec `supabase-v2.sql`.
 5. Récupère tes deux valeurs avec le bouton **Connect** en haut du projet (ou *Settings → API Keys*) :
    - **Project URL** : `https://xxxxxxxx.supabase.co`
    - **Publishable key** : commence par `sb_publishable_…`
@@ -93,7 +148,7 @@ Le PIN est propre à chaque appareil : sur l'ordi, tu peux en mettre un autre, o
 ## Mettre à jour l'appli
 
 1. Modifie le fichier sur GitHub (icône crayon) ou ré-uploade-le.
-2. Dans `sw.js`, change la ligne `const VERSION = 'mc-v1';` en `'mc-v2'` (puis v3, etc.).
+2. Dans `sw.js`, change la ligne `const VERSION = 'mc-v2';` en `'mc-v3'` (puis v4, etc.).
    Sans ça, le téléphone peut garder l'ancienne version en cache.
 3. Ferme complètement l'appli sur le téléphone et rouvre-la.
 

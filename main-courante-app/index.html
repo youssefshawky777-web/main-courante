@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Main courante</title>
-<meta name="description" content="Registre perso : boulots, fac, sport et budget.">
+<meta name="description" content="Registre perso : pages personnalisables, boulots, fac, sport, budget.">
 <meta name="theme-color" content="#ECEEF0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F151B" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -75,6 +75,8 @@
     <div id="note" class="note" hidden></div>
     <main id="main"><p class="ras">Ouverture du registre…</p></main>
   </div>
+  <nav class="bnav" id="bnav" aria-label="Navigation" hidden></nav>
+  <div class="sheet" id="sheet" hidden></div>
 </div>
 
 <!-- Code PIN -->
@@ -91,11 +93,13 @@
       <button class="key" type="button" data-key="7">7</button><button class="key" type="button" data-key="8">8</button><button class="key" type="button" data-key="9">9</button>
       <button class="key small" type="button" data-key="del" aria-label="Effacer le dernier chiffre">Effacer</button><button class="key" type="button" data-key="0">0</button><button class="key small ok" type="button" data-key="ok">OK</button>
     </div>
+    <button class="btn ghost bio" type="button" id="bioBtn" hidden>Face ID / empreinte</button>
     <button class="link" type="button" id="lockAlt"></button>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" hidden></div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Photo" hidden><img id="viewerImg" alt="Photo jointe"><button class="btn" type="button" id="viewerClose">Fermer</button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.109.0/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
